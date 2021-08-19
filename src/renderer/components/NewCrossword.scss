@@ -1,0 +1,15 @@
+.NewCrossword {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .NewCrossword-box {
+    color: white;
+    width: 200px;
+    height: 200px;
+    background-color: #4e6e77;
+    padding: 20px;
+  }
+}

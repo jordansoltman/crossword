@@ -276,8 +276,7 @@
           "parser": "json"
         }
       }
-    ],
-    "singleQuote": true
+    ]
   },
   "husky": {
     "hooks": {
