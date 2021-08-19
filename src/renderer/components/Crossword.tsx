@@ -2,7 +2,7 @@ import * as React from "react";
 import CrosswordCell from "./CrosswordCell";
 import { CrosswordDocument, CellType } from "../types";
 
-import "./Crossword.scss";
+import styles from "./Crossword.scss";
 import { calculateCellMetadata } from "../models/crossword";
 import { useAppDispatch } from "../redux/hooks";
 import { setCellType } from "../redux/actions/documentActions";
@@ -40,11 +40,11 @@ export default function Crossword(props: {
     }
 
     return (
-        <div className="Crossword">
+        <div className={styles.Crossword}>
             {rows.map((row, idx) => {
                 return (
                     // eslint-disable-next-line react/no-array-index-key
-                    <div key={idx} className="Crossword-row">
+                    <div key={idx} className={styles["Crossword-row"]}>
                         {row}
                     </div>
                 );

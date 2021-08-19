@@ -25,7 +25,7 @@ module.exports = {
             }
         ],
         "linebreak-style": ["error", "unix"],
-        quotes: ["error", "double"],
+        quotes: ["error", "double", { allowTemplateLiterals: true }],
         semi: ["error", "always"]
     },
     plugins: ["react", "@typescript-eslint", "prettier"],

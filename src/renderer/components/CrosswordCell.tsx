@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import "./CrosswordCell.scss";
+import styles from "./CrosswordCell.scss";
 import { CellType, CrosswordCell } from "../types";
 
 interface CrosswordCellProps {
@@ -14,13 +14,15 @@ export default function (props: CrosswordCellProps): JSX.Element {
     return (
         <div
             role="button"
-            className={classnames("CrosswordCell", {
-                block: props.cell.type === CellType.BLOCK,
-                warning: props.warning
+            className={classnames(styles.CrosswordCell, {
+                [styles.block]: props.cell.type === CellType.BLOCK,
+                [styles.warning]: props.warning
             })}
             onClick={props.onClick}
         >
-            {props.number ? <div className="CrosswordCell-number">{props.number}</div> : null}
+            {props.number ? (
+                <div className={styles["CrosswordCell-number"]}>{props.number}</div>
+            ) : null}
         </div>
     );
 }
