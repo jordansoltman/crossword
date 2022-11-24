@@ -1,11 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import Crossword from "../components/Crossword";
-import { RootState } from "../redux/reducers";
-import { DocumentState } from "../redux/reducers/documentReducer";
+import CrosswordView from "../components/CrosswordView";
+import { useCellClickHandler } from "../hooks/crossword";
+import { calculateCellMetadata } from "../models/crossword";
+import { useAppSelector } from "../redux/hooks";
 
-export default function CrosswordContainer() {
-    const document = useSelector<RootState, DocumentState>((state) => state.document.present);
+export default function CrosswordContainer(): JSX.Element {
+    const document = useAppSelector((state) => state.document.present);
+    const userInterface = useAppSelector((state) => state.userInterface);
+    if (!document) return <></>;
 
-    return <Crossword document={document!} minimumSpaceWarning={3} />;
+    const metaDataCells = calculateCellMetadata(
+        document,
+        userInterface.activeCellIndex,
+        userInterface.activeCellOrientation
+    );
+    const cellClickHandler = useCellClickHandler();
+
+    return (
+        <CrosswordView
+            width={document.width}
+            height={document.height}
+            cells={metaDataCells}
+            onCellClick={cellClickHandler}
+        />
+    );
 }

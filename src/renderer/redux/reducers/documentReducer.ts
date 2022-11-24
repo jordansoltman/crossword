@@ -52,7 +52,7 @@ const documentReducer: Reducer<DocumentState, DocumentAction> = (
             } else if (action.type === SET_CELL_TEXT_COLOR) {
                 newCell.backgroundColor = action.color;
             } else if (action.type === SET_CELL_CONTENT) {
-                newCell.content = action.content;
+                newCell.content = action.content.toUpperCase();
             } else if (action.type === SET_CELL_BORDER) {
                 newCell.borders = action.border;
             } else if (action.type === SET_CELL_EFFECTS) {

@@ -76,7 +76,7 @@ export const SET_ACTIVE_CELL_INDEX = "SET_SELECTED_CELL_INDEX";
 export interface SetActiveCellIndexAction extends Action<typeof SET_ACTIVE_CELL_INDEX> {
     index: number;
 }
-export const setSelectedCellIndex = (index: number): SetActiveCellIndexAction => ({
+export const setActiveCellIndex = (index: number): SetActiveCellIndexAction => ({
     type: SET_ACTIVE_CELL_INDEX,
     index
 });
@@ -85,7 +85,9 @@ export const SET_ACTIVE_CELL_ORIENTATION = "SET_ACTIVE_CELL_ORIENTATION";
 export interface SetActiveCellOrientationAction extends Action<typeof SET_ACTIVE_CELL_ORIENTATION> {
     orientation: Orientation;
 }
-export const actionCreatorName = (orientation: Orientation): SetActiveCellOrientationAction => ({
+export const setActiveCellOrientation = (
+    orientation: Orientation
+): SetActiveCellOrientationAction => ({
     type: SET_ACTIVE_CELL_ORIENTATION,
     orientation
 });

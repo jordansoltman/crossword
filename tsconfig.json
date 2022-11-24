@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+      "typeRoots": [
+        "./node_modules/@types",
+        "./src/typings"
+    ],
     "target": "ES2018",
     "module": "CommonJS",
     "lib": ["dom", "esnext"],

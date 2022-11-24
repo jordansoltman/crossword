@@ -8,6 +8,10 @@ export enum Tool {
     BLOCK = "BLOCK"
 }
 
+export enum FileType {
+    TXT = "TXT"
+}
+
 export type CellSpan = [startIndex: number, endIndex: number];
 
 export enum Screen {
@@ -58,13 +62,24 @@ export interface CrosswordCell {
 
 export interface MetadataCell {
     warning: boolean;
+    selected: boolean;
+    wordSelected: boolean;
     number?: number;
     cell: CrosswordCell;
 }
 
-export type CrosswordDocument = {
+export interface CrosswordDocument {
     cells: CrosswordCell[];
     width: number;
     height: number;
     title: string;
-};
+}
+
+export interface DictionaryEntry {
+    word: string;
+}
+
+export interface Dictionary {
+    name: string;
+    entries: DictionaryEntry[];
+}

@@ -1,35 +1,35 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import NewCrossword from "../components/NewCrossword";
+import { connect, ConnectedProps } from "react-redux";
 import Main from "../components/Main";
-import { Screen } from "../types";
-
-import "./Application.scss";
-import { UserInterfaceState } from "../redux/reducers/userInterfaceReducer";
-import { setScreen } from "../redux/actions/userInterfaceActions";
-import { newDocument } from "../redux/actions/documentActions";
+import FileDictionaryProvider from "../providers/FileDictionaryProvider";
 import { RootState } from "../redux/store";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import DictionaryService from "../services/DictionaryService";
+import { Screen } from "../types";
+import HomeScreen from "./HomeScreen";
 
-const Application = (): JSX.Element => {
-    const ui = useAppSelector((state) => state.userInterface);
-    const dispatch = useAppDispatch();
+const connector = connect((state: RootState) => ({ screen: state.userInterface.screen }));
+type ApplicationProps = ConnectedProps<typeof connector>;
 
-    switch (ui.screen) {
-        case Screen.MAIN:
-            return <Main />;
-        case Screen.WELCOME:
-            return (
-                <NewCrossword
-                    createCrossword={(title, width, height) => {
-                        dispatch(newDocument(title, width, height));
-                        dispatch(setScreen(Screen.MAIN));
-                    }}
-                />
-            );
-        default:
-            return <div>ERROR</div>;
+class Application extends React.Component<ApplicationProps> {
+    private dictionaryService: DictionaryService;
+
+    constructor(props: ApplicationProps) {
+        super(props);
+
+        this.dictionaryService = new DictionaryService(new FileDictionaryProvider());
+        this.dictionaryService.load();
     }
-};
 
-export default Application;
+    render(): JSX.Element {
+        switch (this.props.screen) {
+            case Screen.MAIN:
+                return <Main dictionaryService={this.dictionaryService} />;
+            case Screen.WELCOME:
+                return <HomeScreen />;
+            default:
+                return <div>ERROR</div>;
+        }
+    }
+}
+
+export default connector(Application);

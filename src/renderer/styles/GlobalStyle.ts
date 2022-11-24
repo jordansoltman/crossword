@@ -6,6 +6,10 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  
+  #root {
+    min-height: 100%;
+  }
 
   body {
     font-family: Arial, Helvetica, sans-serif;

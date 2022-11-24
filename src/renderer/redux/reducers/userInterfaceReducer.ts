@@ -8,12 +8,10 @@ import {
     Screen,
     Tool
 } from "../../types";
-import { SET_TOOL } from "../actions/editorStateActions";
 import {
     UserInterfaceAction,
     SET_SCREEN,
     SET_DICTIONARY_SEARCH,
-    setDictionarySearchRegex,
     SET_DICTIONARY_SEARCH_REGEX,
     SET_DICTIONARY_SEARCH_MODE,
     SET_SELECTED_CELLS,
@@ -21,7 +19,8 @@ import {
     CLEAR_SELECTED_CELLS,
     SET_ACTIVE_CELL_ORIENTATION,
     SET_BLOCK_TOOL_SYMMETRY,
-    SET_PANEL_MODE
+    SET_PANEL_MODE,
+    SET_TOOL
 } from "../actions/userInterfaceActions";
 
 export interface UserInterfaceState {
@@ -61,10 +60,11 @@ export const userInterfaceReducer: Reducer<UserInterfaceState, UserInterfaceActi
                 screen: action.screen
             };
         case SET_TOOL:
-            return {
+            const newState = {
                 ...state,
-                tool: action.tool
+                activeTool: action.tool
             };
+            return newState;
         case SET_DICTIONARY_SEARCH:
             return {
                 ...state,

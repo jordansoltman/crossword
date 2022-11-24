@@ -48,7 +48,7 @@ if (isDevelopment) {
 const installExtensions = async () => {
     const installer = require("electron-devtools-installer");
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-    const extensions = ["REACT_DEVELOPER_TOOLS"];
+    const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
 
     return installer
         .default(
@@ -77,7 +77,8 @@ const createWindow = async () => {
         height: 728,
         icon: getAssetPath("icon.png"),
         webPreferences: {
-            preload: path.join(__dirname, "preload.js")
+            preload: path.join(__dirname, "preload.js"),
+            enableRemoteModule: true
         }
     });
 
