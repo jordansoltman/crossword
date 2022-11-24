@@ -5,16 +5,16 @@ import {
     nextCellIndex,
     previousCellIndex
 } from "../models/crossword";
-import { setCellContent } from "../redux/actions/documentActions";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { CellType, Orientation, Tool } from "../types";
+import * as KeyCode from "keycode-js";
+import { setCellContent } from "../redux/slices/documentSlice";
 import {
     setActiveCellIndex,
     setActiveCellOrientation,
     setDictionarySearch,
     setTool
-} from "../redux/actions/userInterfaceActions";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { CellType, Orientation, Tool } from "../types";
-import * as KeyCode from "keycode-js";
+} from "../redux/slices/userinterfaceSlice";
 
 export function useKeyboardHandler(): (
     key: string,
@@ -51,7 +51,7 @@ export function useKeyboardHandler(): (
         if (!meta && !control && !option && key.length === 1) {
             // If the space bar is hit, we will skip over this square
             if (keyCode !== KeyCode.CODE_SPACE)
-                dispatch(setCellContent(userInterface.activeCellIndex, key));
+                dispatch(setCellContent({ index: userInterface.activeCellIndex, content: key }));
             dispatch(
                 setActiveCellIndex(
                     nextCellIndex(
@@ -65,7 +65,7 @@ export function useKeyboardHandler(): (
         }
 
         if (keyCode === KeyCode.CODE_DELETE || keyCode === KeyCode.CODE_BACK_SPACE) {
-            dispatch(setCellContent(userInterface.activeCellIndex, ""));
+            dispatch(setCellContent({ index: userInterface.activeCellIndex, content: "" }));
             dispatch(
                 setActiveCellIndex(
                     previousCellIndex(
@@ -102,7 +102,7 @@ export function useKeyboardHandler(): (
                 document
             );
             for (const index of indexes) {
-                dispatch(setCellContent(index, ""));
+                dispatch(setCellContent({ index, content: "" }));
             }
         }
 

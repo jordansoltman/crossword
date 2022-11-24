@@ -4,11 +4,11 @@ import store from "./redux/store";
 import Application from "./containers/Application";
 import { ThemeProvider } from "@material-ui/core";
 import { materialUITheme } from "./theme";
-import { ipcRenderer } from "electron";
+// import { ipcRenderer } from "electron";
 
-ipcRenderer.on("menu", (ev, args) => {
-    console.log(ev, args);
-});
+// ipcRenderer.on("menu", (ev, args) => {
+//     console.log(ev, args);
+// });
 
 export default function App() {
     return (

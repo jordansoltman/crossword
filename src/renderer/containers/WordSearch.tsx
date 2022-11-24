@@ -8,11 +8,11 @@ import {
     ListItemText
 } from "@material-ui/core";
 import React, { useCallback, useEffect, useState } from "react";
-import { setDictionarySearch } from "../redux/actions/userInterfaceActions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import DictionaryService, { DictionarySearchResult } from "../services/DictionaryService";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { debounce } from "lodash";
+import { setDictionarySearch } from "../redux/slices/userinterfaceSlice";
 
 export default function WordSearch(props: { dictionarySevice: DictionaryService }): JSX.Element {
     const dispatch = useAppDispatch();

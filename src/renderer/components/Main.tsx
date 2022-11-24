@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import * as React from "react";
-import CrosswordContainer from "../containers/CrosswordContainer";
+import GridView from "../features/grid_view/routes/GridView";
 import RightBar from "../containers/RightBar";
 import WordSearch from "../containers/WordSearch";
 import { useKeyboardHandler } from "../hooks/keyboard";
@@ -16,6 +16,8 @@ export default function Main(props: { dictionaryService: DictionaryService }): J
             style={{ height: "100%" }}
             onKeyDown={(ev) => {
                 if ((ev.target as HTMLElement).tagName.toUpperCase() === "INPUT") return;
+                // FIXME, this might break things!
+                ev.preventDefault();
                 onKeyPress(ev.key, ev.code, ev.metaKey, ev.shiftKey, ev.ctrlKey, ev.altKey);
             }}
             // We have to do this to get the focus on the div
@@ -30,7 +32,7 @@ export default function Main(props: { dictionaryService: DictionaryService }): J
                 </Grid>
                 <Grid item xs={6} style={{ backgroundColor: colorScheme.centerBackgroundColor }}>
                     <Toolbar />
-                    <CrosswordContainer />
+                    <GridView />
                 </Grid>
                 <Grid item xs={3} style={{ backgroundColor: colorScheme.sidebarBackgroundColor }}>
                     <RightBar dictionaryService={props.dictionaryService} />

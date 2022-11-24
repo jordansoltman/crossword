@@ -1,8 +1,13 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { rootReducer } from "./reducers";
+// import documentReducer from "./slices/documentSlice";
+// import userInterfaceReducer from "./slices/userinterfaceSlice";
+import reducer from "./reducers";
 
 const store = configureStore({
-    reducer: rootReducer
+    reducer,
+    middleware: getDefaultMiddleware({
+        immutableCheck: false
+    })
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
@@ -15,7 +20,7 @@ if (typeof module.hot !== "undefined") {
     // @ts-ignore
     module.hot.accept("./reducers", () =>
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        store.replaceReducer(require("./reducers").rootReducer)
+        store.replaceReducer(require("./reducers"))
     );
 }
 

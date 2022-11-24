@@ -1,10 +1,7 @@
 import { calculateSymmetricCellIndex } from "../models/crossword";
-import { setCellType } from "../redux/actions/documentActions";
-import {
-    setActiveCellIndex,
-    setActiveCellOrientation
-} from "../redux/actions/userInterfaceActions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setCellType } from "../redux/slices/documentSlice";
+import { setActiveCellIndex, setActiveCellOrientation } from "../redux/slices/userinterfaceSlice";
 import { CellType, Orientation, Tool } from "../types";
 
 export function useCellClickHandler(): (index: number) => void {
@@ -27,9 +24,9 @@ export function useCellClickHandler(): (index: number) => void {
                 index
             );
 
-            dispatch(setCellType(index, newType));
+            dispatch(setCellType({ index, cellType: newType }));
             if (symmetricalIndex >= 0) {
-                dispatch(setCellType(symmetricalIndex, newType));
+                dispatch(setCellType({ index: symmetricalIndex, cellType: newType }));
             }
         } else if (interfaceState.activeTool === Tool.POINTER) {
             // The cell that was already clicked was just clicked again

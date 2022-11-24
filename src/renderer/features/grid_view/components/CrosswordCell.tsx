@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./CrosswordCell.scss";
-import { CellType, CrosswordCell } from "../types";
+import { CellType, CrosswordCell } from "../../../types";
 import Textfit from "react-textfit";
 
 interface CrosswordCellProps {

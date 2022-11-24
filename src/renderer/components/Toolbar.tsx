@@ -6,8 +6,8 @@ import CreateIcon from "@material-ui/icons/Create";
 import StopIcon from "@material-ui/icons/Stop";
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { setBlockToolSymmetry, setTool } from "../redux/actions/userInterfaceActions";
 import { SymmetryMode, Tool } from "../types";
+import { setBlockToolSymmetry, setTool } from "../redux/slices/userinterfaceSlice";
 
 export default function Toolbar(): JSX.Element {
     const dispatch = useAppDispatch();
