@@ -6,7 +6,7 @@ import WordSearch from "../containers/WordSearch";
 import { useKeyboardHandler } from "../hooks/keyboard";
 import DictionaryService from "../services/DictionaryService";
 import colorScheme from "../theme";
-import Toolbar from "./Toolbar";
+import Toolbar from "../features/toolbar/routes/Toolbar";
 
 export default function Main(props: { dictionaryService: DictionaryService }): JSX.Element {
     const onKeyPress = useKeyboardHandler();

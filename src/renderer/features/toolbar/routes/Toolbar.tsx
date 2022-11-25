@@ -1,14 +1,12 @@
 import React from "react";
-import ToolButton from "./ToolButton";
-import style from "./Toolbar.scss";
-import colorScheme from "../theme";
+import colorScheme from "../../../theme";
 // import CreateIcon from "@material-ui/icons/Create";
 // import StopIcon from "@material-ui/icons/Stop";
 import CreateIcon from "@mui/icons-material/Create";
 import StopIcon from "@mui/icons-material/Stop";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { SymmetryMode, Tool } from "../types";
-import { setBlockToolSymmetry, setTool } from "../redux/slices/userinterfaceSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { SymmetryMode, Tool } from "../../../types";
+import { setBlockToolSymmetry, setTool } from "../../../redux/slices/userinterfaceSlice";
 import { Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 // const StyledToggleButtonGroup = styled()(({ theme }) => ({
@@ -35,6 +33,10 @@ import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
+import { ReactComponent as VerticalBlock } from "../assets/Vertical.svg";
+import { ReactComponent as RotationalBlock } from "../assets/Rotational.svg";
+import { ReactComponent as NormalBlock } from "../assets/Normal.svg";
+import { ReactComponent as HorizontalBlock } from "../assets/Horizontal.svg";
 import TextIcon from "@mui/icons-material/FontDownload";
 import SquareIcon from "@mui/icons-material/Square";
 import HighlightIcon from "@mui/icons-material/HighlightAlt";
@@ -68,7 +70,7 @@ export default function MainToolbar(): JSX.Element {
     const tool = useAppSelector((state) => state.userInterface.activeTool);
     const symmetry = useAppSelector((state) => state.userInterface.blockToolSymmetry);
 
-    const handleToolChange = (event: React.MouseEvent<HTMLElement>, newAlignment: Tool) => {
+    const handleToolChange = (_: any, newAlignment: Tool) => {
         dispatch(setTool(newAlignment));
     };
 
@@ -100,8 +102,41 @@ export default function MainToolbar(): JSX.Element {
                     </ToggleButton>
                 </StyledToggleButtonGroup>
                 <Divider flexItem orientation="vertical" sx={{ mx: 0.5, my: 1 }} />
+                {tool === Tool.BLOCK && <BlockToolbar />}
             </Paper>
         </div>
+    );
+}
+
+export function BlockToolbar(): JSX.Element {
+    const dispatch = useAppDispatch();
+    const blockToolSymmetry = useAppSelector((state) => state.userInterface.blockToolSymmetry);
+
+    const handleSymmetryChange = (_: any, newSymmetry: SymmetryMode) => {
+        dispatch(setBlockToolSymmetry(newSymmetry));
+    };
+
+    return (
+        <StyledToggleButtonGroup
+            size="small"
+            value={blockToolSymmetry}
+            exclusive
+            onChange={handleSymmetryChange}
+            aria-label="tool selection"
+        >
+            <ToggleButton value={SymmetryMode.NONE} aria-label="left aligned">
+                <NormalBlock width={20} />
+            </ToggleButton>
+            <ToggleButton value={SymmetryMode.ROTATIONAL} aria-label="centered">
+                <RotationalBlock width={20} />
+            </ToggleButton>
+            <ToggleButton value={SymmetryMode.HORIZONTAL} aria-label="right aligned">
+                <HorizontalBlock width={20} />
+            </ToggleButton>
+            <ToggleButton value={SymmetryMode.VERTICAL} aria-label="right aligned">
+                <VerticalBlock width={20} />
+            </ToggleButton>
+        </StyledToggleButtonGroup>
     );
 }
 
@@ -112,10 +147,7 @@ export function Toolbar(): JSX.Element {
     console.log(tool);
     return (
         <>
-            <div
-                className={style.Toolbar}
-                style={{ backgroundColor: colorScheme.toolbar.backgroundColor }}
-            >
+            <div style={{ backgroundColor: colorScheme.toolbar.backgroundColor }}>
                 <Button
                     variant="contained"
                     color={tool === Tool.POINTER ? "primary" : "inherit"}
@@ -147,7 +179,7 @@ export function Toolbar(): JSX.Element {
                     >
                         <MenuItem value={SymmetryMode.NONE}>None</MenuItem>
                         <MenuItem value={SymmetryMode.ROTATIONAL}>Rotational</MenuItem>
-                        <MenuItem value={SymmetryMode.HORIZONAL}>Horizontal</MenuItem>
+                        <MenuItem value={SymmetryMode.HORIZONTAL}>Horizontal</MenuItem>
                         <MenuItem value={SymmetryMode.VERTICAL}>Vertical</MenuItem>
                     </Select>
                 </FormControl>

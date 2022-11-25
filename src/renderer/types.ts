@@ -34,7 +34,7 @@ export enum Orientation {
 export enum SymmetryMode {
     NONE = "NONE",
     ROTATIONAL = "ROTATIONAL",
-    HORIZONAL = "HORIZONTAL",
+    HORIZONTAL = "HORIZONTAL",
     VERTICAL = "VERTICAL"
 }
 

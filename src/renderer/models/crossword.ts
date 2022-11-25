@@ -78,7 +78,7 @@ export function calculateSymmetricCellIndex(
             return -1;
         case SymmetryMode.ROTATIONAL:
             return document.width * document.height - index - 1;
-        case SymmetryMode.HORIZONAL:
+        case SymmetryMode.HORIZONTAL:
             return xyToIndex(document.width - x - 1, y, document.width);
         case SymmetryMode.VERTICAL:
             return xyToIndex(x, document.height - y - 1, document.width);
