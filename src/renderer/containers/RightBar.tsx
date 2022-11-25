@@ -1,41 +1,14 @@
-import { Tab, Tabs, withStyles } from "@material-ui/core";
+import { Tab, Tabs } from "@mui/material";
 import React from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from "@mui/icons-material/Delete";
 import DictionaryService from "../services/DictionaryService";
 import AddDictionaryDialog from "../components/AddDictionaryDialog";
 import DictionaryManager from "./DictionaryManager";
 
-const StyledTabs: any = withStyles({
-    indicator: {
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "transparent",
-        "& > span": {
-            maxWidth: 40,
-            width: "100%",
-            backgroundColor: "#635ee7"
-        }
-    }
-})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
-
-const StyledTab: any = withStyles((theme) => ({
-    root: {
-        minWidth: 0,
-        textTransform: "none",
-        color: "#fff",
-        fontWeight: theme.typography.fontWeightRegular,
-        fontSize: theme.typography.pxToRem(15),
-        marginRight: theme.spacing(1),
-        "&:focus": {
-            opacity: 1
-        }
-    }
-}))((props) => <Tab disableRipple {...props} />);
-
 export default function RightBar(props: { dictionaryService: DictionaryService }): JSX.Element {
     return (
         <div className="">
-            <StyledTabs
+            <Tabs
                 value={0}
                 indicatorColor="primary"
                 textColor="primary"
@@ -46,10 +19,10 @@ export default function RightBar(props: { dictionaryService: DictionaryService }
                 }}
                 aria-label="disabled tabs example"
             >
-                <StyledTab label="Dictionaries" />
-                <StyledTab label="Disabled" />
-                <StyledTab label="Active" />
-            </StyledTabs>
+                <Tab label="Dictionaries" />
+                <Tab label="Disabled" />
+                <Tab label="Active" />
+            </Tabs>
             <DictionaryManager dictionaryService={props.dictionaryService} />
         </div>
     );

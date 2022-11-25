@@ -5,7 +5,8 @@ export enum CellType {
 
 export enum Tool {
     POINTER = "POINTER",
-    BLOCK = "BLOCK"
+    BLOCK = "BLOCK",
+    SELECT = "SELECT"
 }
 
 export enum FileType {

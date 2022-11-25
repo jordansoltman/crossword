@@ -6,11 +6,11 @@ import {
     ListItem,
     ListItemSecondaryAction,
     ListItemText
-} from "@material-ui/core";
+} from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import DictionaryService, { DictionarySearchResult } from "../services/DictionaryService";
-import CallMadeIcon from "@material-ui/icons/CallMade";
+import CallMadeIcon from "@mui/icons-material/CallMade";
 import { debounce } from "lodash";
 import { setDictionarySearch } from "../redux/slices/userinterfaceSlice";
 

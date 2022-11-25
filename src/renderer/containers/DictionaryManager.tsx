@@ -1,12 +1,6 @@
-import {
-    IconButton,
-    List,
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText
-} from "@material-ui/core";
+import { IconButton, List, ListItem, ListItemSecondaryAction, ListItemText } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from "@mui/icons-material/Delete";
 import DictionaryService from "../services/DictionaryService";
 import AddDictionaryDialog from "../components/AddDictionaryDialog";
 import { dataToDictionary } from "../models/dictionary";

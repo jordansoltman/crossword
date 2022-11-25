@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core";
+import { createTheme } from "@mui/material";
 
 export interface ColorScheme {
     sidebarBackgroundColor: string;
@@ -13,8 +13,8 @@ export interface ColorScheme {
 }
 
 const theme: ColorScheme = {
-    sidebarBackgroundColor: "#191b1b",
-    centerBackgroundColor: "#252929",
+    sidebarBackgroundColor: "#f5f5f5",
+    centerBackgroundColor: "#fafafa",
     toolbar: {
         backgroundColor: "#323838",
         button: {
@@ -25,9 +25,7 @@ const theme: ColorScheme = {
 };
 
 export const materialUITheme = createTheme({
-    palette: {
-        type: "dark"
-    }
+    palette: {}
 });
 
 export default theme;

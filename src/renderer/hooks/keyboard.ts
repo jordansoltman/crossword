@@ -1,4 +1,3 @@
-import { RestaurantRounded } from "@material-ui/icons";
 import {
     findWordCellIndexes,
     getWordValues as getCellValues,
@@ -110,14 +109,62 @@ export function useKeyboardHandler(): (
          * Handle horizontal orientation change
          */
         if (keyCode === KeyCode.CODE_RIGHT || keyCode === KeyCode.CODE_LEFT) {
-            dispatch(setActiveCellOrientation(Orientation.HORIZONTAL));
+            if (userInterface.activeCellOrientation === Orientation.HORIZONTAL) {
+                if (keyCode === KeyCode.CODE_RIGHT) {
+                    dispatch(
+                        setActiveCellIndex(
+                            nextCellIndex(
+                                document,
+                                userInterface.activeCellIndex,
+                                userInterface.activeCellOrientation
+                            )
+                        )
+                    );
+                } else {
+                    dispatch(
+                        setActiveCellIndex(
+                            previousCellIndex(
+                                document,
+                                userInterface.activeCellIndex,
+                                userInterface.activeCellOrientation
+                            )
+                        )
+                    );
+                }
+            } else {
+                dispatch(setActiveCellOrientation(Orientation.HORIZONTAL));
+            }
         }
 
         /**
          * Handle vertical orientation change
          */
         if (keyCode === KeyCode.CODE_UP || keyCode === KeyCode.CODE_DOWN) {
-            dispatch(setActiveCellOrientation(Orientation.VERTICAL));
+            if (userInterface.activeCellOrientation === Orientation.VERTICAL) {
+                if (keyCode === KeyCode.CODE_DOWN) {
+                    dispatch(
+                        setActiveCellIndex(
+                            nextCellIndex(
+                                document,
+                                userInterface.activeCellIndex,
+                                userInterface.activeCellOrientation
+                            )
+                        )
+                    );
+                } else {
+                    dispatch(
+                        setActiveCellIndex(
+                            previousCellIndex(
+                                document,
+                                userInterface.activeCellIndex,
+                                userInterface.activeCellOrientation
+                            )
+                        )
+                    );
+                }
+            } else {
+                dispatch(setActiveCellOrientation(Orientation.VERTICAL));
+            }
         }
 
         /**

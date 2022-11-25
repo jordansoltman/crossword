@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import React from "react";
 import store from "./redux/store";
 import Application from "./containers/Application";
-import { ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@mui/material/styles";
 import { materialUITheme } from "./theme";
 // import { ipcRenderer } from "electron";
 

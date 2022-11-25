@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import * as React from "react";
 import GridView from "../features/grid_view/routes/GridView";
 import RightBar from "../containers/RightBar";
